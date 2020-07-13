@@ -1,6 +1,7 @@
 const axios = require('axios');
-const { test_channel } = require('../config.json');
 const endpoint = "https://swapi.dev/api";
+
+const test_channel = process.env.TEST_CHANNEL;
 
 module.exports = {
 	name: 'swapi',
