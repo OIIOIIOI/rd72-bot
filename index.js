@@ -1,9 +1,16 @@
+require('dotenv').config();
+
 const fs = require('fs');
 const Discord = require('discord.js');
 const cron = require("node-cron");
-const { prefix, token, test_channel } = require('./config.json');
 
-const client = new Discord.Client();
+const prefix = process.env.PREFIX;
+const token = process.env.TOKEN;
+const test_channel = process.env.TEST_CHANNEL;
+
+//https://discord.com/api/oauth2/authorize?client_id=732194531939844117&scope=bot&permissions=60480&guild_id=603636944513007658&disable_guild_select=true
+
+/*const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -12,15 +19,12 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-
-//https://discord.com/api/oauth2/authorize?client_id=732194531939844117&scope=bot&permissions=60480&guild_id=603636944513007658&disable_guild_select=true
-
 client.on('ready', () => {
 	// console.log(`Logged in as ${client.user.tag}!`);
 	const channel = client.channels.cache.get(test_channel);
 	channel.send(`Logged in as ${client.user.tag}!`);
 
-	cron.schedule("10 17 * * *", () => {
+	cron.schedule("0 10 * * *", () => {
 		const command = client.commands.get('swapi');
 		command.cronExecute(client);
 	});
@@ -54,7 +58,7 @@ client.on('message', message => {
 		message.reply('Error executing command');
 	}
 
-});
+});*/
 
 /*client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot)
@@ -112,4 +116,4 @@ client.on('message', message => {
 
 });*/
 
-client.login(token);
+// client.login(token);
