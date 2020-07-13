@@ -8,11 +8,11 @@ const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;
 const test_channel = process.env.TEST_CHANNEL;
 
-console.log(test_channel);
+// console.log(test_channel);
 
 //https://discord.com/api/oauth2/authorize?client_id=732194531939844117&scope=bot&permissions=60480&guild_id=603636944513007658&disable_guild_select=true
 
-/*const client = new Discord.Client();
+const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -60,7 +60,7 @@ client.on('message', message => {
 		message.reply('Error executing command');
 	}
 
-});*/
+});
 
 /*client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot)
@@ -118,4 +118,4 @@ client.on('message', message => {
 
 });*/
 
-// client.login(token);
+client.login(token);
