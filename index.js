@@ -8,6 +8,8 @@ const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;
 const test_channel = process.env.TEST_CHANNEL;
 
+console.log(test_channel);
+
 //https://discord.com/api/oauth2/authorize?client_id=732194531939844117&scope=bot&permissions=60480&guild_id=603636944513007658&disable_guild_select=true
 
 /*const client = new Discord.Client();
