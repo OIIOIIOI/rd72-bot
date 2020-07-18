@@ -1,21 +1,25 @@
 {
-  "name": "test-bot",
+  "name": "rd72-bot",
   "version": "1.0.0",
-  "description": "node index.js",
+  "description": "Discord Bot for RD72",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "pm2 start index.js --watch",
-    "stop": "pm2 stop all"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OIIOIIOI/rd72-bot.git"
+  },
+  "author": "01101101",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OIIOIIOI/rd72-bot/issues"
+  },
+  "homepage": "https://github.com/OIIOIIOI/rd72-bot#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "node-cron": "^2.0.3",
-    "pm2": "^4.4.0"
+    "node-cron": "^2.0.3"
   }
 }
