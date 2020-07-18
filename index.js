@@ -17,7 +17,7 @@ const client = new Discord.Client();
 // Register commands
 client.commands = new Discord.Collection();
 const activeCommands = [
-	'ping.js',
+	// 'ping.js',
 ];
 for (const file of activeCommands)
 {
@@ -27,14 +27,46 @@ for (const file of activeCommands)
 
 // READY HANDLER -----------------------------------------------------------------------------
 client.once('ready', () => {
-	const channel = client.channels.cache.get(TEST_CHANNEL);
+	// const channel = client.channels.cache.get(TEST_CHANNEL);
 	// channel.send(`Je suis là ! ${client.user.tag}!`);
-	channel.send(`Je suis de retour !`);
+	// channel.send(`Je suis de retour !`);
 
-	cron.schedule("02 15 * * *", () => {
-		const command = client.commands.get('time');
-		command.cronExecute(channel);
-	});
+	let chans = client.channels.cache;
+	chans.each(c => {
+		console.log(c.name, c.id)
+	})
+	// let chan = chans.get('690282970761658459');
+	// console.log(chan);
+
+	// Trackkarma reminders
+	const reminders_tk = require('./settings/reminders_tk');
+	for (const r of reminders_tk.list)
+	{
+		let merged = { ...reminders_tk.common, ...r.embed };
+		cron.schedule(r.time, () => {
+			const channel = client.channels.cache.get(r.channel);
+			if (channel && channel.type === 'text')
+				channel.send({ embed: merged });
+		});
+	}
+
+	// Regular reminders
+	const reminders = require('./settings/reminders');
+	for (const r of reminders)
+	{
+		cron.schedule(r.time, () => {
+			const channel = client.channels.cache.get(r.channel);
+			if (channel && channel.type === 'text')
+			{
+				if (r.type === 'embed')
+					channel.send({ embed: r.message });
+				else
+					channel.send(r.message);
+			}
+		});
+	}
+
+	// client.destroy();
 });
 
 // MESSAGE HANDLER -----------------------------------------------------------------------------
