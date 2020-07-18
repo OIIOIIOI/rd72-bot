@@ -17,7 +17,7 @@ const client = new Discord.Client();
 // Register commands
 client.commands = new Discord.Collection();
 const activeCommands = [
-	// 'ping.js',
+	'prune.js',
 ];
 for (const file of activeCommands)
 {
@@ -31,12 +31,10 @@ client.once('ready', () => {
 	// channel.send(`Je suis là ! ${client.user.tag}!`);
 	// channel.send(`Je suis de retour !`);
 
-	let chans = client.channels.cache;
+	/*let chans = client.channels.cache;
 	chans.each(c => {
 		console.log(c.name, c.id)
-	})
-	// let chan = chans.get('690282970761658459');
-	// console.log(chan);
+	})*/
 
 	// Trackkarma reminders
 	const reminders_tk = require('./settings/reminders_tk');
@@ -83,12 +81,17 @@ client.on('message', message => {
 	const command = client.commands.get(commandName);
 
 	if (command.guildOnly && message.channel.type !== 'text')
-		return message.reply('Command not available here');
+		return message.reply("Cette commande n'est pas disponible ici");
+
+	if (command.adminOnly && !message.member.hasPermission('ADMINISTRATOR'))
+		return message.reply("Cette commande est réservée aux admins");
 
 	if (command.args && !args.length) {
 		let reply = `Cette commande requiert un ou plusieurs arguments :`;
 		if (command.usage)
-			reply += `\nUsage : \`${PREFIX}${command.name} ${command.usage}\``;
+			reply += `\n\nUsage : \`${PREFIX}${command.name} ${command.usage}\``;
+		if (command.description)
+			reply += `\n*${command.description}*`;
 		return message.channel.send(reply);
 	}
 
