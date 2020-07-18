@@ -6,9 +6,15 @@ module.exports = {
 	usage: '<n>',
 	args: true,
 	execute(message, args) {
-		const amount = parseInt(args[0]);
+		let amount = parseInt(args[0]);
 		if (isNaN(amount))
 			return message.reply("Un entier est requis");
-		message.channel.bulkDelete(amount, true);
+
+		while (amount > 0)
+		{
+			message.channel.lastMessage.delete();
+			amount--;
+		}
+		// message.channel.bulkDelete(amount, true);
 	},
 };
