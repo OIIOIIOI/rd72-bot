@@ -2,7 +2,7 @@ module.exports = {
 	common: {
 		color: 0xfefefe,
 		title: "Rappel Trackkarma",
-		description: "Pensez à indiquer votre présence ou absence pour ce soir !",
+		description: "Pensez à indiquer votre présence ou absence pour demain !",
 		fields: [
 			{
 				name: 'Merci ! <:president:619226378566369291>',
@@ -13,26 +13,31 @@ module.exports = {
 	list: [
 		{
 			channel: "603647950282817617",// #général-fresh
-			time: "30 10 * * 2",// Mardi
+			time: "30 19 * * 0",// Dimanche
+			embed: {}
+		},
+		{
+			channel: "603647950282817617",// #général-fresh
+			time: "30 19 * * 5",// Vendredi
 			embed: {}
 		},
 		{
 			channel: "603647986865668106",// #général-missfeet
-			time: "30 10 * * 1",// Lundi
+			time: "30 19 * * 0",// Dimanche
 			embed: {
 				color: 0xbb6bff,
 			}
 		},
 		{
 			channel: "603647326397005845",// #général-rcp
-			time: "30 10 * * 3",// Mercredi
+			time: "30 19 * * 2",// Mardi
 			embed: {
 				color: 0xd40000,
 			}
 		},
 		{
 			channel: "603647965382443036",// #général-chica
-			time: "30 10 * * 4",// Jeudi
+			time: "30 19 * * 3",// Mercredi
 			embed: {
 				color: 0x277ecd,
 			}
