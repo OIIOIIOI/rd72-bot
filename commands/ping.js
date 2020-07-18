@@ -6,6 +6,6 @@ module.exports = {
 		message.channel.send('Pong is back.');
 	},
 	cronExecute(channel) {
-		channel.send('Il est 14h55.');
+		channel.send('Il est 15h02.');
 	},
 };

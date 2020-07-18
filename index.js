@@ -17,7 +17,7 @@ const client = new Discord.Client();
 // Register commands
 client.commands = new Discord.Collection();
 const activeCommands = [
-	'prune.js',
+	'ping.js',
 ];
 for (const file of activeCommands)
 {
@@ -31,7 +31,7 @@ client.once('ready', () => {
 	// channel.send(`Je suis là ! ${client.user.tag}!`);
 	channel.send(`Je suis de retour !`);
 
-	cron.schedule("55 14 * * *", () => {
+	cron.schedule("02 15 * * *", () => {
 		const command = client.commands.get('time');
 		command.cronExecute(channel);
 	});
