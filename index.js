@@ -18,25 +18,27 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const activeCommands = [
 	'prune.js',
+	'list-channels.js',
 ];
-for (const file of activeCommands)
-{
+for (const file of activeCommands) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
 
+// Register requests
+client.requests = new Discord.Collection();
+const activeRequests = [
+	'hello.js',
+	'goodbye.js',
+];
+for (const file of activeRequests) {
+	const request = require(`./requests/${file}`);
+	client.requests.set(request.name, request);
+}
+
 // READY HANDLER -----------------------------------------------------------------------------
 client.once('ready', () => {
-	// const channel = client.channels.cache.get(TEST_CHANNEL);
-	// channel.send(`Je suis là ! ${client.user.tag}!`);
-	// channel.send(`Je suis de retour !`);
-
-	/*let chans = client.channels.cache;
-	chans.each(c => {
-		console.log(c.name, c.id)
-	})*/
-
-	// Trackkarma reminders
+	// Setup Trackkarma reminders
 	const reminders_tk = require('./settings/reminders_tk');
 	for (const r of reminders_tk.list)
 	{
@@ -48,7 +50,7 @@ client.once('ready', () => {
 		});
 	}
 
-	// Regular reminders
+	// Setup regular reminders
 	const reminders = require('./settings/reminders');
 	for (const r of reminders)
 	{
@@ -63,15 +65,24 @@ client.once('ready', () => {
 			}
 		});
 	}
-
-	// client.destroy();
 });
 
 // MESSAGE HANDLER -----------------------------------------------------------------------------
 client.on('message', message => {
-	if (!message.content.startsWith(PREFIX) || message.author.bot)
+	// Don't listen to the bots
+	if (message.author.bot)
 		return;
 
+	if (client.commands.size > 0 && message.content.startsWith(PREFIX))
+		checkForCommand(message);
+
+	const firstMention = message.mentions.users.first();
+	if (client.requests.size > 0 && firstMention && firstMention.id === client.user.id)
+		checkForRequest(message);
+});
+
+function checkForCommand (message)
+{
 	const args = message.content.slice(PREFIX.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
@@ -96,11 +107,35 @@ client.on('message', message => {
 	}
 
 	try {
-		command.execute(message, args);
+		command.execute(message, args, client);
 	} catch (error) {
 		message.reply('Error executing command');
 	}
-});
+}
+
+function checkForRequest (message)
+{
+	let firstRequest;
+	let firstRequestPos = 9999;
+	client.requests.each(request => {
+		for (k of request.keywords) {
+			let res = message.content.toLocaleLowerCase().search(k);
+			if (res > -1 && res < firstRequestPos) {
+				firstRequest = request;
+				firstRequestPos = res;
+				break;
+			}
+		}
+	});
+
+	if (firstRequest) {
+		try {
+			firstRequest.execute(message);
+		} catch (error) {
+			message.reply('Error executing command');
+		}
+	}
+}
 
 // Login
 client.login(TOKEN);

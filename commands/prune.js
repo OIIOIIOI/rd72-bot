@@ -5,7 +5,7 @@ module.exports = {
 	description: 'Supprime <n> messages dans le salon',
 	usage: '<n>',
 	args: true,
-	execute(message, args) {
+	execute(message, args, client) {
 		const amount = parseInt(args[0]);
 		if (isNaN(amount))
 			return message.reply("Un entier est requis");
