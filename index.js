@@ -28,8 +28,8 @@ for (const file of activeCommands) {
 // Register requests
 client.requests = new Discord.Collection();
 const activeRequests = [
-	'hello.js',
-	'goodbye.js',
+	// 'hello.js',
+	// 'goodbye.js',
 ];
 for (const file of activeRequests) {
 	const request = require(`./requests/${file}`);
@@ -39,7 +39,7 @@ for (const file of activeRequests) {
 // READY HANDLER -----------------------------------------------------------------------------
 client.once('ready', () => {
 	// Setup Trackkarma reminders
-	const reminders_tk = require('./settings/reminders_tk');
+	/*const reminders_tk = require('./settings/reminders_tk');
 	for (const r of reminders_tk.list)
 	{
 		let merged = { ...reminders_tk.common, ...r.embed };
@@ -48,10 +48,10 @@ client.once('ready', () => {
 			if (channel && channel.type === 'text')
 				channel.send({ embed: merged });
 		});
-	}
+	}*/
 
 	// Setup regular reminders
-	const reminders = require('./settings/reminders');
+	/*const reminders = require('./settings/reminders');
 	for (const r of reminders)
 	{
 		cron.schedule(r.time, () => {
@@ -64,7 +64,7 @@ client.once('ready', () => {
 					channel.send(r.message);
 			}
 		});
-	}
+	}*/
 });
 
 // MESSAGE HANDLER -----------------------------------------------------------------------------
