@@ -1,4 +1,5 @@
-# RD72 Bot
+# RD72 Bot :robot:
+
 Discord Bot for the best league in the universe
 
 ## How to install and run the bot on server
