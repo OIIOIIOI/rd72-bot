@@ -7,7 +7,7 @@ module.exports = [
 	},*/
 	{
 		channel: "690282970761658459",
-		time: "* * * * *",
+		time: "0 0 * * *",
 		type: "embed",
 		message: {
 			color: 0xffcc00,
