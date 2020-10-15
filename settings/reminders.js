@@ -1,10 +1,10 @@
 module.exports = [
-	{
+	/*{
 		channel: "690282970761658459",
 		time: "0 0 * * *",
 		type: "text",
 		message: "Cron is on!"
-	},
+	},*/
 	{
 		channel: "690282970761658459",
 		time: "0 0 * * *",
