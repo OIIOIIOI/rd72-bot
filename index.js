@@ -28,8 +28,8 @@ for (const file of activeCommands) {
 // Register requests
 client.requests = new Discord.Collection();
 const activeRequests = [
-	'hello.js',
-	'goodbye.js',
+	// 'hello.js',
+	// 'goodbye.js',
 ];
 for (const file of activeRequests) {
 	const request = require(`./requests/${file}`);
