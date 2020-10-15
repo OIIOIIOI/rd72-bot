@@ -51,7 +51,7 @@ client.once('ready', () => {
 	}*/
 
 	// Setup regular reminders
-	/*const reminders = require('./settings/reminders');
+	const reminders = require('./settings/reminders');
 	for (const r of reminders)
 	{
 		cron.schedule(r.time, () => {
@@ -64,7 +64,7 @@ client.once('ready', () => {
 					channel.send(r.message);
 			}
 		});
-	}*/
+	}
 });
 
 // MESSAGE HANDLER -----------------------------------------------------------------------------
