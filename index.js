@@ -49,6 +49,24 @@ client.once('ready', () => {
 				channel.send({ embed: merged });
 		});
 	}*/
+	
+	// Setup Chou reminders
+	const reminders_chou = require('./settings/reminders_chou')
+	for (const r of reminders_chou.list)
+	{
+		let merged = { ...reminders_chou.common, ...r.embed }
+		cron.schedule(r.time, () => {
+			const channel = client.channels.cache.get(r.channel)
+			if (channel && channel.type === 'text')
+			{
+				channel.send({ embed: merged })
+					.then(async msg => { // Add an emoji for each option
+						for (emoji of r.reactions)
+							await msg.react(emoji)
+					}).catch((error) => {})
+			}
+		})
+	}
 
 	// Setup regular reminders
 	/*const reminders = require('./settings/reminders');

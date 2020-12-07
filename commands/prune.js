@@ -9,6 +9,6 @@ module.exports = {
 		const amount = parseInt(args[0]);
 		if (isNaN(amount))
 			return message.reply("Un entier est requis");
-		message.channel.bulkDelete(amount, true);
+		message.channel.bulkDelete(amount+1, true);
 	},
 };
