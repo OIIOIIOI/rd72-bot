@@ -63,7 +63,7 @@ client.once('ready', () => {
 					.then(async msg => { // Add an emoji for each option
 						for (emoji of r.reactions)
 							await msg.react(emoji)
-					}).catch((error) => {})
+					}).catch((error) => { /*console.log(error)*/ })
 			}
 		})
 	}
