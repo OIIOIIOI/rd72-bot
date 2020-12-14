@@ -8,6 +8,7 @@ module.exports = {
 		{
 			channel: "692041464699420692",// #télétraining
 			time: "0 18 * * 0",
+			except: [],
 			embed: {
 				title: "Lundi off skate !",
 				description: "J'indique ma présence en réaction à ce message :wink:\n\n:one: Je participe **de 18h45 à 19h15** !\n:two: Je participe **de 19h15 à 19h45** !",
@@ -20,6 +21,10 @@ module.exports = {
 		{
 			channel: "692041464699420692",// #télétraining
 			time: "0 18 * * 3",
+			except: [
+				'2020-12-24',
+				'2020-12-31',
+			],
 			embed: {
 				title: "Jeudi off skate !",
 				description: "J'indique ma présence en réaction à ce message :wink:\n\n:one: Je participe **de 18h à 18h30** !\n:two: Je participe **de 18h30 à 19h** !",
@@ -32,6 +37,7 @@ module.exports = {
 		{
 			channel: "692041464699420692",// #télétraining
 			time: "30 18 * * 1",
+			except: [],
 			embed: {
 				title: "Lundi off skate !",
 				description: "On se retrouve sur Zoom dans 15 minutes ! :muscle:\n\n**Réunion :** `897 084 1282`\n**Code :** `0000`",
@@ -43,6 +49,10 @@ module.exports = {
 		{
 			channel: "692041464699420692",// #télétraining
 			time: "45 17 * * 4",
+			except: [
+				'2020-12-24',
+				'2020-12-31',
+			],
 			embed: {
 				title: "Jeudi off skate !",
 				description: "On se retrouve sur Zoom dans 15 minutes ! :muscle:\n\n**Réunion :** `897 084 1282`\n**Code :** `0000`",

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/OIIOIIOI/rd72-bot#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "dayjs": "^1.9.7",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "node-cron": "^2.0.3"

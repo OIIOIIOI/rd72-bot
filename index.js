@@ -4,6 +4,7 @@ require('dotenv').config({
 
 const Discord = require('discord.js');
 const cron = require("node-cron");
+const dayjs = require('dayjs');
 
 const PREFIX = process.env.PREFIX;
 const TOKEN = process.env.TOKEN;
@@ -56,14 +57,22 @@ client.once('ready', () => {
 	{
 		let merged = { ...reminders_chou.common, ...r.embed }
 		cron.schedule(r.time, () => {
-			const channel = client.channels.cache.get(r.channel)
-			if (channel && channel.type === 'text')
-			{
-				channel.send({ embed: merged })
-					.then(async msg => { // Add an emoji for each option
-						for (emoji of r.reactions)
-							await msg.react(emoji)
-					}).catch((error) => { /*console.log(error)*/ })
+			// Check for exceptions
+			let isException = false
+			for (const ex of r.except) {
+				isException = isException || dayjs().isSame(ex, 'day')
+			}
+			// Send scheduled message
+			if (!isException) {
+				const channel = client.channels.cache.get(r.channel)
+				if (channel && channel.type === 'text')
+				{
+					channel.send({ embed: merged })
+						.then(async msg => { // Add an emoji for each option
+							for (emoji of r.reactions)
+								await msg.react(emoji)
+						}).catch((error) => { /*console.log(error)*/ })
+				}
 			}
 		})
 	}
