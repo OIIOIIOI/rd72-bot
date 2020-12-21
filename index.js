@@ -52,7 +52,7 @@ client.once('ready', () => {
 	}*/
 	
 	// Setup Chou reminders
-	const reminders_chou = require('./settings/reminders_chou')
+	/*const reminders_chou = require('./settings/reminders_chou')
 	for (const r of reminders_chou.list)
 	{
 		let merged = { ...reminders_chou.common, ...r.embed }
@@ -71,11 +71,11 @@ client.once('ready', () => {
 						.then(async msg => { // Add an emoji for each option
 							for (emoji of r.reactions)
 								await msg.react(emoji)
-						}).catch((error) => { /*console.log(error)*/ })
+						}).catch((error) => { /!*console.log(error)*!/ })
 				}
 			}
 		})
-	}
+	}*/
 
 	// Setup regular reminders
 	/*const reminders = require('./settings/reminders');
