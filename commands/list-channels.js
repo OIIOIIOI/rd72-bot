@@ -1,4 +1,21 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
+	data: new SlashCommandBuilder()
+		.setName('list-channels')
+		.setDescription('List all channels and their IDs')
+		.setDefaultPermission(false),
+	async execute(interaction)
+	{
+		await interaction.reply({
+			content: 'Coming back soon...',
+			ephemeral: true,
+		});
+	},
+};
+
+// OLD CODE BELOW
+/*module.exports = {
 	name: 'list-channels',
 	guildOnly: true,
 	adminOnly: true,
@@ -17,4 +34,4 @@ module.exports = {
 		if (list.length > 0)
 			message.channel.send('----\n'+list.join('\n'));
 	},
-};
+};*/

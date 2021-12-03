@@ -1,14 +1,22 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
-	name: 'prune',
-	guildOnly: true,
-	adminOnly: true,
-	description: 'Supprime <n> messages dans le salon',
-	usage: '<n>',
-	args: true,
-	execute(message, args, client) {
-		const amount = parseInt(args[0]);
-		if (isNaN(amount))
-			return message.reply("Un entier est requis");
-		message.channel.bulkDelete(amount+1, true);
+	data: new SlashCommandBuilder()
+		.setName('prune')
+		.setDescription('Delete previous messages in the current channel')
+		.addIntegerOption(option => option
+			.setName('count')
+			.setDescription('How many messages to delete'))
+		.setDefaultPermission(false),
+	async execute(interaction)
+	{
+		const count = interaction.options.getInteger('count') || 1;
+		
+		await interaction.channel.bulkDelete(count, true);
+		
+		await interaction.reply({
+			content: `Successfully deleted ${count} message${count > 1 ? 's' : ''}`,
+			ephemeral: true,
+		});
 	},
 };
