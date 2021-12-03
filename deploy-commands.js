@@ -16,17 +16,12 @@ for (const file of commandFiles) {
 
 const rest = new REST({ version: '9' }).setToken(TOKEN);
 
-(async () => {
-	try {
-		console.log('Started refreshing commands.');
-		
-		// Guild-only register (for development)
-		await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands });
-		// Global register
-		// await rest.put(Routes.applicationCommands(CLIENT_ID, GUILD_ID), { body: commands });
-		
-		console.log('Successfully reloaded commands.');
-	} catch (error) {
-		console.error(error);
-	}
-})();
+// Guild-only register (for development)
+rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands })
+	.then(() => console.log('Successfully registered application commands.'))
+	.catch(console.error);
+
+// Global register
+/*rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands })
+	.then(() => console.log('Successfully registered application commands.'))
+	.catch(console.error);*/
