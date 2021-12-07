@@ -2,8 +2,8 @@ require('dotenv').config({ path: __dirname+"/.env" });
 const TOKEN = process.env.TOKEN;
 
 const fs = require('fs');
-const cron = require("node-cron");
-const dayjs = require('dayjs');
+// const cron = require("node-cron");
+// const dayjs = require('dayjs');
 const {
 	Client,
 	Intents,
@@ -36,6 +36,29 @@ client.login(TOKEN);
 
 
 
+
+
+
+
+
+
+/*
+<:ref:618544270021885952>
+<:rcppivot:618537132650135572>
+<:rcpjammer:618537132700467220>
+<:rcpblocker:618537132687884308>
+<:president:619226378566369291>
+<:nso:618541672854454293>
+<:mfpivot:618537132600066069>
+<:mfjammer:618537132557860865>
+<:mfblocker:618537132600066068>
+<:fmpivot:618537132503597076>
+<:fmjammer:618537132243550232>
+<:fmblocker:618537132449071131>
+<:chpivot:638363516025438208>
+<:chjammer:638363456042565641>
+<:chblocker:638363564297551872>
+*/
 
 
 
