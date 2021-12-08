@@ -1,7 +1,7 @@
 module.exports = {
 	data: [
 		{
-			date: "2021-12-11 10:00",
+			date: "2021-12-11 08:00",
 			teams: ["missfeet", "rcp", "chica", "fresh"],
 			location: "vauguyon",
 			note: "Intraligue !",
