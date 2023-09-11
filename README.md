@@ -13,6 +13,9 @@ Discord Bot for the best league in the universe
 - create/edit the `post-receive` hook:
 `nano ~/rd72-bot.git/hooks/post-receive`
 
+- make post-receive hook executable if needed:
+`chmod +x ~/rd72-bot.git/hooks/post-receive`
+
 ```bash
 #!/bin/bash
 TARGET="/var/www/rd72bot"
